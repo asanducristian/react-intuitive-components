@@ -1,10 +1,10 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { DatePickerAdd, DatePickerInputRandom, DatePickerRandom, DatePickerSlider, DatePickerStopper, ButtonChaseMe, ReverseTextInput, ButtonRussianRoulette, MagicCursorProvider, ReverseScrollProvider, MouseTrailProvider, ButtonExtraLongClick, ButtonFlashbang, LaggyInput, SideScrollProvider, MathCaptcha } from '../.';
+import { DatePickerAdd, DatePickerInputRandom, DatePickerRandom, DatePickerSlider, DatePickerStopper, ButtonChaseMe, ReverseTextInput, ButtonRussianRoulette, MagicCursorProvider, ReverseScrollProvider, MouseTrailProvider, ButtonExtraLongClick, ButtonFlashbang, LaggyInput, SideScrollProvider, MathCaptcha, InfiniteScrollProvider } from '../.';
 
 const App = () => {
-  const [captchaOpened, setCaptchaOpened] = React.useState(true);
+  const [captchaOpened, setCaptchaOpened] = React.useState(false);
   return (
 
 
@@ -12,6 +12,7 @@ const App = () => {
     // <MouseTrailProvider maxTrailLength={100}>
     // <SideScrollProvider>
     // <MagicCursorProvider intervalTime={1000}>
+    <InfiniteScrollProvider>
       <div style={{ backgroundColor: 'gray', width: '100%', height: '100%', maxWidth: '100%' }}>
         <DatePickerAdd style={'dark'} onSubmit={(date) => { console.log(date) }} />
         <DatePickerInputRandom format="retarded" onSubmit={(date) => { console.log(date) }} />
@@ -31,6 +32,7 @@ const App = () => {
           <MathCaptcha noQuestionAnswered={() => { console.log("no q answered"); setCaptchaOpened(false) }} onMonkey={() => { console.log("MONKEY IQ"); setCaptchaOpened(false) }} onStupid={() => { console.log("STUPID IQ"); setCaptchaOpened(false) }} onAverage={() => { console.log("AVERAGE IQ"); setCaptchaOpened(false) }} onGenius={() => { console.log("GENIUS IQ"); setCaptchaOpened(false) }} />
         )}
       </div>
+    </InfiniteScrollProvider>
     // </MagicCursorProvider>
     // </SideScrollProvider>
     // </MouseTrailProvider>
