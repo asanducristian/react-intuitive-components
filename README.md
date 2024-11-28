@@ -10,13 +10,13 @@ Oh, come on. You know this already:
 
 ```bash
 # Using NPM
-npm install react-intuitive-ui
+npm install react-intuitive-components
 
 # Using Yarn
-yarn add react-intuitive-ui
+yarn add react-intuitive-components
 
 # Using PNPM
-pnpm add react-intuitive-ui
+pnpm add react-intuitive-components
 ```
 
 ## Usage
@@ -28,10 +28,10 @@ pnpm add react-intuitive-ui
 ### Example
 
 ```tsx
-import { ButtonGoodLuck, DatePickerStopper } from 'react-intuitive-ui';
+import { ButtonChaseMe, DatePickerStopper } from 'react-intuitive-components';
 
 // Example usage
-<ButtonGoodLuck
+<ButtonChaseMe
     maxEscapes={5}
     onStop={() => console.log("Finally stopped escaping!")}
     buttonLabel="Click Me If You Can"
