@@ -11,7 +11,7 @@ import { CURSOR_STYLES } from '../../utils/constants';
  * @property {() => void} changeCursorStyle - A function to change the cursor style. It happens automatically, but if you *need* control...
  */
 
-interface MagicCursorContextType {
+export interface MagicCursorContextType {
     cursorStyle: string;
     changeCursorStyle: () => void;
 }
@@ -30,7 +30,7 @@ export interface MagicCursorProviderProps {
     intervalTime: number;
 }
 
-const MagicCursorContext = createContext<MagicCursorContextType | undefined>(undefined);
+export const MagicCursorContext = createContext<MagicCursorContextType | undefined>(undefined);
 
 /**
  * The `MagicCursorProvider` wraps your app with a constantly changing cursor style. 

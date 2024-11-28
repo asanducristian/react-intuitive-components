@@ -22,3 +22,6 @@ export * from './providers/MagicCursorProvider'
 export * from './providers/ReverseScrollProvider'
 export * from './providers/MouseTrailProvider'
 export * from './providers/SideScrollProvider'
+
+//CAPTCHA
+export * from './components/captchas/MathCaptcha'
