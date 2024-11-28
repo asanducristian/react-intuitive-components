@@ -8,19 +8,38 @@ export interface DatePickerInputRandomProps {
     customSelectButton?: ReactNode;
     customResetButton?: ReactNode;
     dateFormat: 'normal' | 'retarded';
+    theme: 'dark' | 'light';
 }
 
-const style: React.CSSProperties = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    backgroundColor: '#FFF',
-    padding: '16px',
-    border: '1px solid #ccc',
-    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-    outline: 'none',
-};
+/**
+ * **DatePickerInputRandom**
+ * 
+ * Ready to take a leap of fate? With the DatePickerInputRandom component, you can randomly select a date from the depths of time! Just pick digits for
+ * day, month, and year and click "Submit" to confirm that this is your true, totally random birthdate — or just hit "Reset" to try again. Choose between 
+ * two wild date formats, `normal` (for the sensible folks) and `retarded` (for the daredevils who like to keep things unpredictable).
+ * 
+ * **Note:** The `retarded` format is, well... it's not your grandma's date format. But it's for those who dare to live on the edge. Enjoy the chaos!
+ * 
+ * @component
+ * @example
+ * // Example usage:
+ * <DatePickerInputRandom 
+ *   onSubmit={(date) => console.log("Are you sure? Chosen Date:", date)} 
+ *   dateFormat="normal" 
+ *   theme="light" 
+ * />
+ * 
+ * @param {Object} props - The random date picker input props that control the fate of your day.
+ * @param {string} [props.selectLabel='Submit'] - The label for the "Submit" button, where you (probably) confirm your randomly selected date.
+ * @param {string} [props.resetLabel='Reset'] - The label for the "Reset" button, in case you want to reset fate and pick another random date. Because why not?
+ * @param {Function} props.onSubmit - The function that gets called with the date you *randomly* pick when you hit the "Submit" button. It's your fate now.
+ * @param {React.ReactNode} [props.customSelectButton] - A custom button for those who want to make their "Submit" button as cool as their date picking skills.
+ * @param {React.ReactNode} [props.customResetButton] - A custom button for resetting your date to start over. No regrets, just randomness.
+ * @param {'normal' | 'retarded'} [props.dateFormat='normal'] - The date format. 'normal' is MMDDYYYY, 'retarded' is DDMMYYYY (yes, that's the name we went with).
+ * @param {'dark' | 'light'} [props.theme='light'] - The theme of your date picker. Choose `dark` for a mysterious, "I like my dates like I like my coffee" vibe, or `light` for a brighter, "I'm feeling lucky" experience.
+ * 
+ * @returns {JSX.Element} The DatePickerInputRandom component, where fate, randomness, and questionable date formatting collide in the most fun way possible!
+ */
 
 export const DatePickerInputRandom: React.FC<DatePickerInputRandomProps> = ({
     selectLabel = 'Submit',
@@ -29,6 +48,7 @@ export const DatePickerInputRandom: React.FC<DatePickerInputRandomProps> = ({
     customSelectButton,
     customResetButton,
     dateFormat = 'normal',
+    theme = 'light',
 }) => {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [selectedElement, setSelectedElement] = useState<number>(-1);
@@ -44,6 +64,13 @@ export const DatePickerInputRandom: React.FC<DatePickerInputRandomProps> = ({
         day1: 0,
         day2: 0,
     });
+
+    const isDark = theme === 'dark';
+    const textColor = isDark ? 'text-white' : 'text-gray-800';
+    const hoverTextColor = isDark ? 'hover:text-gray-800' : 'hover:text-white';
+    const backgroundColor = isDark ? 'bg-gray-600' : 'bg-white';
+    const borderColor = isDark ? 'border-white' : 'border-gray-300';
+    const hoverBgColor = isDark ? 'hover:bg-gray-100' : 'hover:bg-gray-600';
 
     const resetValues = (): void => {
         setValues({
@@ -111,7 +138,6 @@ export const DatePickerInputRandom: React.FC<DatePickerInputRandomProps> = ({
 
     return (
         <React.Fragment>
-            <div className="mt-4 text-lg flex justify-center">FORMAT: Y3M2.D2Y4.D1M1Y2Y1</div>
             <div className="flex justify-center items-center mt-4 space-x-2 select-none">
 
                 {dateFormat === 'normal' && (
@@ -122,7 +148,7 @@ export const DatePickerInputRandom: React.FC<DatePickerInputRandomProps> = ({
                                     setSelectedElement(index);
                                     setOpenModal(true);
                                 }}
-                                className="border border-gray-300 rounded px-2 py-1 cursor-pointer hover:bg-gray-100"
+                                className={`border ${textColor} ${borderColor} ${backgroundColor} rounded px-2 py-1 cursor-pointer ${hoverTextColor} ${hoverBgColor}`}
                             >
                                 {values[field]}
                             </div>
@@ -139,7 +165,7 @@ export const DatePickerInputRandom: React.FC<DatePickerInputRandomProps> = ({
                                     setSelectedElement(index);
                                     setOpenModal(true);
                                 }}
-                                className="border border-gray-300 rounded px-2 py-1 cursor-pointer hover:bg-gray-100"
+                                className={`border ${textColor} ${borderColor} ${backgroundColor} rounded px-2 py-1 cursor-pointer ${hoverTextColor} ${hoverBgColor}`}
                             >
                                 {values[field]}
                             </div>
@@ -192,7 +218,8 @@ export const DatePickerInputRandom: React.FC<DatePickerInputRandomProps> = ({
                         className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-center"
                         onClick={() => setOpenModal(false)}
                     >
-                        <div style={style} onClick={(e) => e.stopPropagation()}>
+                        <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                bg-white p-4 border border-gray-300 shadow-md rounded-md`} onClick={(e) => e.stopPropagation()}>
                             <div className="p-4 grid grid-cols-3 gap-4">
                                 {digits.slice(0, 9).map((digit, index) => (
                                     <div

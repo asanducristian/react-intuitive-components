@@ -10,7 +10,39 @@ export interface DatePickerStopperProps {
     customResetButton?: React.ReactNode;
     customSubmitButton?: React.ReactNode;
     dateFormat: 'normal' | 'retarded';
+    theme: 'dark' | 'light';
 }
+
+/**
+ * **DatePickerStopper**
+ * 
+ * Imagine you're in a time machine, rapidly cycling through digits and trying to stop at the exact moment! 
+ * This quirky date picker lets you scroll through digits at lightning speed. Miss one? Too bad — the timer restarts! 
+ * It's like a digital race against time, where precision is everything. 
+ * So buckle up and get ready to stop at the right moment to pick the perfect date!
+ * 
+ * @component
+ * @example
+ * // Usage example:
+ * <DatePickerStopper
+ *   onSubmit={(date) => console.log("Date Selected:", date)}
+ *   dateFormat="normal"
+ *   theme="light"
+ * />
+ * 
+ * @param {Object} props - The props for this wild ride!
+ * @param {string} [props.selectLabel='STOP'] - The label for the "STOP" button, where you must halt the madness.
+ * @param {string} [props.resetLabel='Reset'] - The label for the reset button. Everything starts over here!
+ * @param {string} [props.submitLabel='Submit'] - The label for the submit button. The final moment — will you succeed?
+ * @param {Function} props.onSubmit - Callback function to handle the date submission (you made it!).
+ * @param {React.ReactNode} [props.customSelectButton] - A custom button to replace the select button. If you dare!
+ * @param {React.ReactNode} [props.customResetButton] - A custom reset button for those who like to break the rules.
+ * @param {React.ReactNode} [props.customSubmitButton] - A custom submit button — for the rebels at heart.
+ * @param {'normal' | 'retarded'} [props.dateFormat='normal'] - The date format. 'normal' is MMDDYYYY, 'retarded' is DDMMYYYY (yes, that's the name we went with).
+ * @param {'dark' | 'light'} [props.theme='light'] - Choose your vibe: 'dark' for the night owls, 'light' for those who like to bask in daylight.
+ *
+ * @returns {JSX.Element} The DatePickerStopper component, where time is both your enemy and your friend.
+ */
 
 export const DatePickerStopper: React.FC<DatePickerStopperProps> = ({
     selectLabel = 'STOP',
@@ -20,7 +52,8 @@ export const DatePickerStopper: React.FC<DatePickerStopperProps> = ({
     customSelectButton,
     customResetButton,
     customSubmitButton,
-    dateFormat = 'normal'
+    dateFormat = 'normal',
+    theme = 'light'
 }) => {
     const [day1, setDay1] = useState<number>(0);
     const [day2, setDay2] = useState<number>(0);
@@ -61,6 +94,9 @@ export const DatePickerStopper: React.FC<DatePickerStopperProps> = ({
             incrementHandlers[position]();
         }, 200);
     };
+
+    const isDark = theme === 'dark';
+    const textColor = isDark ? 'text-white' : 'text-black';
 
     const handleReset = () => {
         stopIncrementing();
@@ -107,7 +143,7 @@ export const DatePickerStopper: React.FC<DatePickerStopperProps> = ({
 
     return (
         <React.Fragment>
-            <h3 className="text-lg mt-4 text-center">
+            <h3 className={`${textColor} text-lg mt-4 text-center`}>
                 {`${day1}${day2}.${month1}${month2}.${year1}${year2}${year3}${year4}`}
             </h3>
             <div className="mt-4 flex justify-center">
