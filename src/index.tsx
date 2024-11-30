@@ -17,6 +17,9 @@ export * from './components/buttons/ButtonFlashbang'
 export * from './components/inputs/ReverseTextInput'
 export * from './components/inputs/LaggyInput'
 
+// Text
+export * from './components/text/TextTurbulence'
+
 // Providers
 export * from './providers/MagicCursorProvider'
 export * from './providers/ReverseScrollProvider'

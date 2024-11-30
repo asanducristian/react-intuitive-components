@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { DatePickerAdd, DatePickerInputRandom, DatePickerRandom, DatePickerSlider, DatePickerStopper, ButtonChaseMe, ReverseTextInput, ButtonRussianRoulette, MagicCursorProvider, ReverseScrollProvider, MouseTrailProvider, ButtonExtraLongClick, ButtonFlashbang, LaggyInput, SideScrollProvider, MathCaptcha, InfiniteScrollProvider } from '../.';
+import { DatePickerAdd, DatePickerInputRandom, DatePickerRandom, DatePickerSlider, DatePickerStopper, ButtonChaseMe, ReverseTextInput, ButtonRussianRoulette, MagicCursorProvider, ReverseScrollProvider, MouseTrailProvider, ButtonExtraLongClick, ButtonFlashbang, LaggyInput, SideScrollProvider, MathCaptcha, InfiniteScrollProvider, TextTurbulence } from '../.';
 
 const App = () => {
   const [captchaOpened, setCaptchaOpened] = React.useState(false);
@@ -27,6 +27,10 @@ const App = () => {
 
         <ReverseTextInput onChange={(value) => { console.log(value) }} />
         <LaggyInput onChange={(value) => { console.log(value) }} />
+
+        <TextTurbulence randomColors={true} randomLetterSizes={true} randomWordSizes={false} textSize={30}>
+          Hello, World! Welcome to the anti-UX site!
+        </TextTurbulence>
 
         {captchaOpened && (
           <MathCaptcha noQuestionAnswered={() => { console.log("no q answered"); setCaptchaOpened(false) }} onMonkey={() => { console.log("MONKEY IQ"); setCaptchaOpened(false) }} onStupid={() => { console.log("STUPID IQ"); setCaptchaOpened(false) }} onAverage={() => { console.log("AVERAGE IQ"); setCaptchaOpened(false) }} onGenius={() => { console.log("GENIUS IQ"); setCaptchaOpened(false) }} />

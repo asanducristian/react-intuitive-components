@@ -23,7 +23,6 @@ export interface ButtonChaseMeProps {
  * 
  * @component
  * @example
- * // Example usage:
  * <ButtonChaseMe 
  *   maxEscapes={5} 
  *   onStop={() => console.log("The button stopped running!")}
@@ -61,14 +60,13 @@ export const ButtonChaseMe: React.FC<ButtonChaseMeProps> = ({
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
 
-            // Ensure the div stays within the screen boundaries
-            const divSize = 100; // Size of the div (100px by 100px)
+            const divSize = 100;
             const randomX = Math.random() * (viewportWidth - divSize);
             const randomY = Math.random() * (viewportHeight - divSize);
 
             setPosition({
-                x: (randomX / viewportWidth) * 100, // Convert to percentage
-                y: (randomY / viewportHeight) * 100, // Convert to percentage
+                x: (randomX / viewportWidth) * 100,
+                y: (randomY / viewportHeight) * 100,
             });
 
             setEscapes((prev) => prev + 1);
