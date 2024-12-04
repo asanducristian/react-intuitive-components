@@ -68,10 +68,10 @@ export const ReverseTextInput: React.FC<ReverseTextInputProps> = ({
     );
 
     return (
-        <div style={{ marginBottom: "20px" }}>
+        <div>
             {customInput ? (
                 React.cloneElement(customInput as React.ReactElement, {
-                    ref: inputRef,
+                    inputRef: inputRef,
                     value,
                     onChange: handleChange,
                 })

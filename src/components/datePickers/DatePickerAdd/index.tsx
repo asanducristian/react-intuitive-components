@@ -48,7 +48,8 @@ export const DatePickerAdd: React.FC<DatePickerAddProps> = ({
     const [month, setMonth] = useState(0);
     const [year, setYear] = useState(1900);
 
-    const handleDateSubmit = () => {
+    const handleDateSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
         onSubmit(new Date(`${month}/${day}/${year}`));
     };
 

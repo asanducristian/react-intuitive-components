@@ -67,7 +67,9 @@ export const DatePickerRandom: React.FC<DatePickerRandomProps> = ({
         generateRandomDate();
     }, []);
 
-    const generateRandomDate = (): void => {
+    const generateRandomDate = (e?: React.MouseEvent<HTMLButtonElement>): void => {
+        if (e)
+            e.preventDefault();
         const randomDate = new Date(getRandomArbitrary(startDate.getTime(), endDate.getTime()));
         setDate(randomDate);
     };
@@ -98,11 +100,11 @@ export const DatePickerRandom: React.FC<DatePickerRandomProps> = ({
 
                 {customSelectButton ? (
                     React.cloneElement(customSelectButton as React.ReactElement, {
-                        onClick: () => onSubmit(date),
+                        onClick: (e: React.MouseEvent<HTMLButtonElement>) => { e.preventDefault(); onSubmit(date) },
                     })
                 ) : (
                     <button
-                        onClick={() => onSubmit(date)}
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => { e.preventDefault(); onSubmit(date) }}
                         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
                     >
                         {selectLabel}

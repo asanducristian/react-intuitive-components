@@ -72,7 +72,8 @@ export const DatePickerInputRandom: React.FC<DatePickerInputRandomProps> = ({
     const borderColor = isDark ? 'border-white' : 'border-gray-300';
     const hoverBgColor = isDark ? 'hover:bg-gray-100' : 'hover:bg-gray-600';
 
-    const resetValues = (): void => {
+    const resetValues = (e: React.MouseEvent<HTMLButtonElement>): void => {
+        e.preventDefault();
         setValues({
             year3: 0,
             year4: 0,
@@ -190,21 +191,25 @@ export const DatePickerInputRandom: React.FC<DatePickerInputRandomProps> = ({
 
                 {customSelectButton ? (
                     React.cloneElement(customSelectButton as React.ReactElement, {
-                        onClick: () =>
-                            onSubmit(
-                                new Date(
-                                    `${values.month1}${values.month2}/${values.day1}${values.day2}/${values.year1}${values.year2}${values.year3}${values.year4}`
-                                )
-                            ),
-                    })
-                ) : (
-                    <button
-                        onClick={() =>
+                        onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+                            e.preventDefault()
                             onSubmit(
                                 new Date(
                                     `${values.month1}${values.month2}/${values.day1}${values.day2}/${values.year1}${values.year2}${values.year3}${values.year4}`
                                 )
                             )
+                        }
+                    })
+                ) : (
+                    <button
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                            e.preventDefault()
+                            onSubmit(
+                                new Date(
+                                    `${values.month1}${values.month2}/${values.day1}${values.day2}/${values.year1}${values.year2}${values.year3}${values.year4}`
+                                )
+                            )
+                        }
                         }
                         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
                     >

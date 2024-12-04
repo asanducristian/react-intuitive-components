@@ -98,7 +98,8 @@ export const DatePickerStopper: React.FC<DatePickerStopperProps> = ({
     const isDark = theme === 'dark';
     const textColor = isDark ? 'text-white' : 'text-black';
 
-    const handleReset = () => {
+    const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
         stopIncrementing();
         setPosition(0);
         setDay1(0);
@@ -112,7 +113,8 @@ export const DatePickerStopper: React.FC<DatePickerStopperProps> = ({
         startIncrementing();
     };
 
-    const handleSelect = () => {
+    const handleSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
         stopIncrementing();
         if (position < 7) {
             setPosition((prev) => prev + 1);
@@ -120,7 +122,8 @@ export const DatePickerStopper: React.FC<DatePickerStopperProps> = ({
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
         stopIncrementing();
         if (dateFormat === 'normal') {
             const date = new Date(

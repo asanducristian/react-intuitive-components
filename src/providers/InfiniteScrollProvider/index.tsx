@@ -90,7 +90,7 @@ export const InfiniteScrollProvider: React.FC<InfiniteScrollProviderProps> = ({ 
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.clientHeight;
 
-        childSizeRef.current = document.body.scrollHeight;
+        childSizeRef.current = document.body.scrollHeight<documentHeight?document.body.scrollHeight:documentHeight;
 
         if (documentHeight <= windowHeight) {
             addMoreChildren();

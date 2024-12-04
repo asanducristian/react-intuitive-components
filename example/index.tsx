@@ -2,6 +2,7 @@ import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { DatePickerAdd, DatePickerInputRandom, DatePickerRandom, DatePickerSlider, DatePickerStopper, ButtonChaseMe, ReverseTextInput, ButtonRussianRoulette, MagicCursorProvider, ReverseScrollProvider, MouseTrailProvider, ButtonExtraLongClick, ButtonFlashbang, LaggyInput, SideScrollProvider, MathCaptcha, InfiniteScrollProvider, TextTurbulence } from '../.';
+import { TextField } from '@mui/material';
 
 const App = () => {
   const [captchaOpened, setCaptchaOpened] = React.useState(false);
@@ -25,7 +26,7 @@ const App = () => {
         <ButtonExtraLongClick clickTime={10000} onLongClick={() => { console.log("long click") }} onNotLongEnoughClick={() => { console.log("not so long click") }} />
         <ButtonFlashbang flashDuration={2000} onClick={() => { console.log("flashbanged") }} />
 
-        <ReverseTextInput onChange={(value) => { console.log(value) }} />
+        <ReverseTextInput onChange={(value) => { console.log(value) }}/>
         <LaggyInput onChange={(value) => { console.log(value) }} />
 
         <TextTurbulence randomColors={true} randomLetterSizes={true} randomWordSizes={false} textSize={30}>

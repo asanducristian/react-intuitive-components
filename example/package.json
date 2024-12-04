@@ -8,6 +8,9 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@mui/material": "^6.1.9",
     "react-app-polyfill": "^1.0.0"
   },
   "alias": {

@@ -93,11 +93,11 @@ export const DatePickerSlider: React.FC<DatePickerSliderProps> = ({
             <div className="mt-4 flex justify-center">
                 {customSubmitButton ? (
                     React.cloneElement(customSubmitButton as React.ReactElement, {
-                        onClick: () => onSubmit(selectedDate),
+                        onClick: (e: React.MouseEvent<HTMLButtonElement>) => { e.preventDefault(); onSubmit(selectedDate) },
                     })
                 ) : (
                     <button
-                        onClick={() => onSubmit(selectedDate)}
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => { e.preventDefault(); onSubmit(selectedDate) }}
                         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
                     >
                         {submitLabel}
